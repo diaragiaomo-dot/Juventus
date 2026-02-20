@@ -19,7 +19,7 @@ export async function askJAssistant(prompt: string) {
   try {
     const ai = getGenAI();
     if (!ai) {
-      return "L'assistente AI non è configurato. Assicurati di aver impostato la GEMINI_API_KEY nelle impostazioni di Vercel.";
+      return "L'assistente AI non è configurato. Assicurati di aver impostato la GEMINI_API_KEY nelle impostazioni di Vercel (Settings > Environment Variables).";
     }
 
     const model = "gemini-3-flash-preview";
@@ -35,9 +35,14 @@ export async function askJAssistant(prompt: string) {
         systemInstruction,
       },
     });
+    
+    if (!response || !response.text) {
+      return "Non sono riuscito a generare una risposta. Riprova più tardi. Forza Juve!";
+    }
+    
     return response.text;
   } catch (error) {
     console.error("Error calling Gemini:", error);
-    return "Scusa, sto riscontrando un problema tecnico. Fino alla fine!";
+    return "Scusa, sto riscontrando un problema tecnico. Verifica la tua API Key su Vercel. Fino alla fine!";
   }
 }
