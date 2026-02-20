@@ -133,12 +133,12 @@ const Hero = () => (
   <section className="relative h-screen flex items-center justify-center overflow-hidden pt-20">
     <div className="absolute inset-0 z-0">
       <img 
-        src="https://picsum.photos/seed/allianz/1920/1080?grayscale" 
-        className="w-full h-full object-cover opacity-40"
+        src="https://picsum.photos/seed/juve-stadium-2026/1920/1080?grayscale" 
+        className="w-full h-full object-cover opacity-50 scale-105 animate-pulse-slow"
         alt="Allianz Stadium"
         referrerPolicy="no-referrer"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-juve-black via-transparent to-juve-black/50"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-juve-black via-juve-black/20 to-juve-black/60"></div>
     </div>
     
     <div className="relative z-10 text-center px-6 max-w-4xl">
