@@ -227,11 +227,12 @@ const HistorySection = () => (
       </div>
       <div className="relative aspect-square">
         <img 
-          src="https://picsum.photos/seed/history/800/800?grayscale" 
+          src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&q=80&w=1000" 
           alt="Juventus History" 
-          className="w-full h-full object-cover rounded-3xl opacity-50"
+          className="w-full h-full object-cover rounded-3xl opacity-60 grayscale hover:grayscale-0 transition-all duration-1000"
           referrerPolicy="no-referrer"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-juve-black to-transparent opacity-40 rounded-3xl"></div>
         <div className="absolute inset-0 border-2 border-juve-gold/20 rounded-3xl translate-x-4 translate-y-4 -z-10"></div>
       </div>
     </div>
