@@ -4,7 +4,9 @@ let genAI: GoogleGenAI | null = null;
 
 function getGenAI() {
   if (!genAI) {
-    const apiKey = process.env.GEMINI_API_KEY;
+    // Fallback sicuro per ambienti browser dove process.env potrebbe non essere mappato correttamente
+    const apiKey = typeof process !== 'undefined' ? process.env.GEMINI_API_KEY : '';
+    
     if (!apiKey) {
       console.warn("GEMINI_API_KEY non configurata. L'assistente AI sarà disabilitato.");
       return null;
