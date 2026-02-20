@@ -79,6 +79,15 @@ const MOCK_FAN_MESSAGES = [
   { id: 3, user: "JuveFanatic", message: "Il mito di Del Piero non morirà mai. Fino alla fine.", date: "2 giorni fa" },
 ];
 
+const FRIENDS = [
+  { name: "Juventus Club DOC", city: "Torino", members: "5000+" },
+  { name: "Bianconeri nel Mondo", city: "New York", members: "1200+" },
+  { name: "Vecchia Signora Fan", city: "Milano", members: "3500+" },
+  { name: "J-Family", city: "Roma", members: "2000+" },
+  { name: "Drughi Bianconeri", city: "Torino", members: "8000+" },
+  { name: "Tradizione Bianconera", city: "Torino", members: "3000+" },
+];
+
 // --- Components ---
 
 const Navbar = () => {
@@ -98,6 +107,7 @@ const Navbar = () => {
           <a href="#news" className="hover:text-juve-gold transition-colors">News</a>
           <a href="#history" className="hover:text-juve-gold transition-colors">Storia</a>
           <a href="#delpiero" className="hover:text-juve-gold transition-colors">Del Piero</a>
+          <a href="#amici" className="hover:text-juve-gold transition-colors">Amici</a>
           <a href="#squad" className="hover:text-juve-gold transition-colors">Squadra</a>
           <a href="#fans" className="hover:text-juve-gold transition-colors">Tifosi</a>
           <a href="#matches" className="hover:text-juve-gold transition-colors">Partite</a>
@@ -120,6 +130,7 @@ const Navbar = () => {
             <a href="#news" onClick={() => setIsOpen(false)}>News</a>
             <a href="#history" onClick={() => setIsOpen(false)}>Storia</a>
             <a href="#delpiero" onClick={() => setIsOpen(false)}>Del Piero</a>
+            <a href="#amici" onClick={() => setIsOpen(false)}>Amici</a>
             <a href="#squad" onClick={() => setIsOpen(false)}>Squadra</a>
             <a href="#fans" onClick={() => setIsOpen(false)}>Tifosi</a>
             <a href="#matches" onClick={() => setIsOpen(false)}>Partite</a>
@@ -394,6 +405,38 @@ const DelPieroSection = () => (
   </section>
 );
 
+const AmiciBianconeriSection = () => (
+  <section id="amici" className="py-24 px-6 max-w-7xl mx-auto">
+    <SectionHeader title="Amici Bianconeri" subtitle="La Nostra Rete" />
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {FRIENDS.map((friend, idx) => (
+        <motion.div
+          key={idx}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: idx * 0.1 }}
+          viewport={{ once: true }}
+          className="glass-panel p-8 rounded-3xl hover:border-juve-gold/30 transition-all group"
+        >
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-juve-gold group-hover:bg-juve-gold group-hover:text-black transition-colors">
+              <Users size={24} />
+            </div>
+            <div>
+              <h3 className="font-bold text-lg">{friend.name}</h3>
+              <p className="text-white/40 text-xs uppercase tracking-widest">{friend.city}</p>
+            </div>
+          </div>
+          <div className="flex justify-between items-center pt-4 border-t border-white/5">
+            <span className="text-sm text-white/60">Membri Attivi</span>
+            <span className="font-bold text-juve-gold">{friend.members}</span>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </section>
+);
+
 const SquadSection = () => (
   <section id="squad" className="py-24 px-6 max-w-7xl mx-auto">
     <SectionHeader title="I Protagonisti" subtitle="La Rosa 2025/26" />
@@ -600,6 +643,7 @@ export default function App() {
       <Number10Section />
       <DelPieroSection />
       <FansSection />
+      <AmiciBianconeriSection />
       <SquadSection />
       <MatchSection />
       <AIChat />
