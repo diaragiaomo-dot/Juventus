@@ -56,6 +56,29 @@ const MATCHES: Match[] = [
   { id: 3, opponent: "Lazio", date: "15 Mar 2026", competition: "Serie A", isHome: true },
 ];
 
+const PALMARES = [
+  { name: "Scudetti", count: 36, icon: Trophy },
+  { name: "Coppe Italia", count: 15, icon: Shield },
+  { name: "Supercoppe ITA", count: 9, icon: TrendingUp },
+  { name: "Champions League", count: 2, icon: Trophy },
+  { name: "Coppe UEFA", count: 3, icon: Trophy },
+  { name: "Intercontinentali", count: 2, icon: Trophy },
+];
+
+const LEGENDARY_10S = [
+  { name: "Omar Sivori", years: "1957-1965", desc: "Il primo Pallone d'Oro bianconero." },
+  { name: "Michel Platini", years: "1982-1987", desc: "Le Roi. Tre Palloni d'Oro consecutivi." },
+  { name: "Roberto Baggio", years: "1990-1995", desc: "Il Divin Codino. Genio e fantasia." },
+  { name: "Alessandro Del Piero", years: "1993-2012", desc: "Pinturicchio. Il capitano dei record." },
+  { name: "Kenan Yıldız", years: "2024-Oggi", desc: "Il futuro. Talento puro e personalità." },
+];
+
+const MOCK_FAN_MESSAGES = [
+  { id: 1, user: "Marco89", message: "Sempre al tuo fianco, in ogni stadio. Forza Juve!", date: "Oggi" },
+  { id: 2, user: "Giulia_Bianconera", message: "Thiago Motta ci porterà lontano. Bel gioco e grinta!", date: "Ieri" },
+  { id: 3, user: "JuveFanatic", message: "Il mito di Del Piero non morirà mai. Fino alla fine.", date: "2 giorni fa" },
+];
+
 // --- Components ---
 
 const Navbar = () => {
@@ -73,7 +96,9 @@ const Navbar = () => {
         
         <div className="hidden md:flex items-center gap-8 text-sm font-medium uppercase tracking-widest">
           <a href="#news" className="hover:text-juve-gold transition-colors">News</a>
+          <a href="#history" className="hover:text-juve-gold transition-colors">Storia</a>
           <a href="#squad" className="hover:text-juve-gold transition-colors">Squadra</a>
+          <a href="#fans" className="hover:text-juve-gold transition-colors">Tifosi</a>
           <a href="#matches" className="hover:text-juve-gold transition-colors">Partite</a>
           <a href="#assistant" className="px-4 py-2 bg-white text-black rounded-full hover:bg-juve-gold transition-colors">J-Assistant</a>
         </div>
@@ -92,7 +117,9 @@ const Navbar = () => {
             className="absolute top-20 left-0 w-full bg-black border-b border-white/10 p-6 flex flex-col gap-4 md:hidden"
           >
             <a href="#news" onClick={() => setIsOpen(false)}>News</a>
+            <a href="#history" onClick={() => setIsOpen(false)}>Storia</a>
             <a href="#squad" onClick={() => setIsOpen(false)}>Squadra</a>
+            <a href="#fans" onClick={() => setIsOpen(false)}>Tifosi</a>
             <a href="#matches" onClick={() => setIsOpen(false)}>Partite</a>
             <a href="#assistant" onClick={() => setIsOpen(false)}>J-Assistant</a>
           </motion.div>
@@ -146,6 +173,151 @@ const SectionHeader = ({ title, subtitle }: { title: string; subtitle: string })
     <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight">{title}</h2>
   </div>
 );
+
+const HistorySection = () => (
+  <section id="history" className="py-24 px-6 max-w-7xl mx-auto border-b border-white/5">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <SectionHeader title="Oltre un Secolo di Gloria" subtitle="La Nostra Storia" />
+        <div className="space-y-6 text-white/60 leading-relaxed font-light">
+          <p>
+            Fondata il 1° novembre 1897 da un gruppo di studenti del liceo classico Massimo d'Azeglio, 
+            la Juventus è diventata il club più titolato e iconico d'Italia. 
+          </p>
+          <p>
+            Dalla prima maglia rosa all'adozione delle iconiche strisce bianconere nel 1903, 
+            la storia della "Vecchia Signora" è un intreccio di successi leggendari, 
+            campioni indimenticabili e un legame indissolubile con la famiglia Agnelli che dura dal 1923.
+          </p>
+          <div className="grid grid-cols-2 gap-8 pt-8">
+            {PALMARES.slice(0, 4).map((item, idx) => (
+              <div key={idx} className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-juve-gold">
+                  <item.icon size={20} />
+                </div>
+                <div>
+                  <div className="text-2xl font-display font-bold">{item.count}</div>
+                  <div className="text-[10px] uppercase tracking-widest text-white/40">{item.name}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="relative aspect-square">
+        <img 
+          src="https://picsum.photos/seed/history/800/800?grayscale" 
+          alt="Juventus History" 
+          className="w-full h-full object-cover rounded-3xl opacity-50"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 border-2 border-juve-gold/20 rounded-3xl translate-x-4 translate-y-4 -z-10"></div>
+      </div>
+    </div>
+  </section>
+);
+
+const Number10Section = () => (
+  <section className="py-24 px-6 max-w-7xl mx-auto">
+    <SectionHeader title="Il Mito della Dieci" subtitle="I Grandi Numeri 10" />
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      {LEGENDARY_10S.map((legend, idx) => (
+        <motion.div 
+          key={idx}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ delay: idx * 0.1 }}
+          className="glass-panel p-6 rounded-2xl hover:bg-white/10 transition-all group"
+        >
+          <div className="text-4xl font-display font-bold text-juve-gold mb-4 opacity-20 group-hover:opacity-100 transition-opacity">10</div>
+          <h4 className="font-bold text-lg mb-1">{legend.name}</h4>
+          <p className="text-[10px] text-juve-gold font-mono uppercase tracking-widest mb-4">{legend.years}</p>
+          <p className="text-xs text-white/40 leading-relaxed">{legend.desc}</p>
+        </motion.div>
+      ))}
+    </div>
+  </section>
+);
+
+const FansSection = () => {
+  const [messages, setMessages] = useState(MOCK_FAN_MESSAGES);
+  const [newName, setNewName] = useState('');
+  const [newMessage, setNewMessage] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newName.trim() || !newMessage.trim()) return;
+    
+    const msg = {
+      id: Date.now(),
+      user: newName,
+      message: newMessage,
+      date: "Adesso"
+    };
+    
+    setMessages([msg, ...messages]);
+    setNewName('');
+    setNewMessage('');
+  };
+
+  return (
+    <section id="fans" className="py-24 bg-white/5">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+          <div className="lg:col-span-1">
+            <SectionHeader title="Il Muro dei Tifosi" subtitle="Community" />
+            <p className="text-white/60 mb-8 font-light">
+              Lascia il tuo messaggio per la squadra. La voce dei tifosi è il nostro dodicesimo uomo in campo.
+            </p>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input 
+                type="text" 
+                placeholder="Il tuo nome"
+                value={newName}
+                onChange={(e) => setNewName(e.target.value)}
+                className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-juve-gold outline-none transition-colors"
+              />
+              <textarea 
+                placeholder="Scrivi il tuo messaggio..."
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+                rows={4}
+                className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-juve-gold outline-none transition-colors resize-none"
+              ></textarea>
+              <button 
+                type="submit"
+                className="w-full py-4 bg-white text-black font-bold uppercase tracking-widest rounded-xl hover:bg-juve-gold transition-colors"
+              >
+                Invia Messaggio
+              </button>
+            </form>
+          </div>
+          
+          <div className="lg:col-span-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <AnimatePresence initial={false}>
+                {messages.map((msg) => (
+                  <motion.div 
+                    key={msg.id}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="glass-panel p-6 rounded-2xl border-l-4 border-l-juve-gold"
+                  >
+                    <p className="text-sm italic mb-4 text-white/80">"{msg.message}"</p>
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs font-bold uppercase tracking-widest">{msg.user}</span>
+                      <span className="text-[10px] text-white/20 font-mono">{msg.date}</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const SquadSection = () => (
   <section id="squad" className="py-24 px-6 max-w-7xl mx-auto">
@@ -352,6 +524,9 @@ export default function App() {
     <div className="min-h-screen selection:bg-juve-gold selection:text-black">
       <Navbar />
       <Hero />
+      <HistorySection />
+      <Number10Section />
+      <FansSection />
       <SquadSection />
       <MatchSection />
       <AIChat />
