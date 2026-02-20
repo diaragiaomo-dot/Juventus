@@ -97,6 +97,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-8 text-sm font-medium uppercase tracking-widest">
           <a href="#news" className="hover:text-juve-gold transition-colors">News</a>
           <a href="#history" className="hover:text-juve-gold transition-colors">Storia</a>
+          <a href="#delpiero" className="hover:text-juve-gold transition-colors">Del Piero</a>
           <a href="#squad" className="hover:text-juve-gold transition-colors">Squadra</a>
           <a href="#fans" className="hover:text-juve-gold transition-colors">Tifosi</a>
           <a href="#matches" className="hover:text-juve-gold transition-colors">Partite</a>
@@ -118,6 +119,7 @@ const Navbar = () => {
           >
             <a href="#news" onClick={() => setIsOpen(false)}>News</a>
             <a href="#history" onClick={() => setIsOpen(false)}>Storia</a>
+            <a href="#delpiero" onClick={() => setIsOpen(false)}>Del Piero</a>
             <a href="#squad" onClick={() => setIsOpen(false)}>Squadra</a>
             <a href="#fans" onClick={() => setIsOpen(false)}>Tifosi</a>
             <a href="#matches" onClick={() => setIsOpen(false)}>Partite</a>
@@ -130,40 +132,59 @@ const Navbar = () => {
 };
 
 const Hero = () => (
-  <section className="relative h-screen flex items-center justify-center overflow-hidden pt-20">
+  <section className="relative h-screen flex items-center justify-center overflow-hidden">
     <div className="absolute inset-0 z-0">
       <img 
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7t-xLnWgbcLCO3vsPFbigrInOAxuIru_lsw&s" 
-        className="w-full h-full object-cover opacity-50 scale-105 animate-pulse-slow"
-        alt="Allianz Stadium"
+        src="https://vegalift.it/wp-content/uploads/2024/12/vega-installazioni_allianz-stadium-big.jpg" 
+        className="w-full h-full object-cover opacity-60 scale-105 animate-pulse-slow"
+        alt="Allianz Stadium Atmosphere"
         referrerPolicy="no-referrer"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-juve-black via-juve-black/20 to-juve-black/60"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-juve-black via-juve-black/40 to-transparent"></div>
+      <div className="absolute inset-0 bg-juve-black/20 backdrop-blur-[2px]"></div>
     </div>
     
-    <div className="relative z-10 text-center px-6 max-w-4xl">
+    <div className="relative z-10 text-center px-6 max-w-5xl">
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 1, ease: "easeOut" }}
       >
-        <span className="text-juve-gold font-mono text-sm tracking-[0.3em] uppercase mb-4 block">Stagione 2025 / 2026</span>
-        <h1 className="font-display text-7xl md:text-9xl font-bold mb-6 tracking-tighter leading-none">
-          FINO ALLA <br /> <span className="italic">FINE.</span>
+        <div className="flex items-center justify-center gap-4 mb-8">
+          <div className="h-[1px] w-12 bg-juve-gold/50"></div>
+          <span className="text-juve-gold font-mono text-xs tracking-[0.4em] uppercase">Stagione 2025 / 2026</span>
+          <div className="h-[1px] w-12 bg-juve-gold/50"></div>
+        </div>
+        
+        <h1 className="font-display text-8xl md:text-[12rem] font-bold mb-8 tracking-tighter leading-[0.85] uppercase">
+          Fino alla <br /> 
+          <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/20 italic">Fine.</span>
         </h1>
-        <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-          L'eccellenza, la storia, il futuro. Benvenuti nella nuova era bianconera sotto la guida di Thiago Motta.
+        
+        <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 font-light leading-relaxed uppercase tracking-widest">
+          L'eccellenza, la storia, il futuro. Benvenuti nella nuova era bianconera.
         </p>
+        
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button className="px-8 py-4 bg-white text-black font-bold uppercase tracking-widest rounded-full hover:bg-juve-gold transition-all transform hover:scale-105">
+          <a href="#squad" className="px-8 py-4 bg-white text-black font-bold uppercase tracking-widest rounded-full hover:bg-juve-gold transition-all transform hover:scale-105">
             Scopri la Squadra
-          </button>
-          <button className="px-8 py-4 border border-white/20 rounded-full font-bold uppercase tracking-widest hover:bg-white/10 transition-all">
-            Ultimi Risultati
-          </button>
+          </a>
+          <a href="#history" className="px-8 py-4 border border-white/20 text-white font-bold uppercase tracking-widest rounded-full hover:bg-white/10 transition-all">
+            La Nostra Storia
+          </a>
         </div>
       </motion.div>
     </div>
+
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1.2, duration: 1 }}
+      className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
+    >
+      <div className="w-[1px] h-16 bg-gradient-to-b from-juve-gold to-transparent"></div>
+      <span className="text-[10px] uppercase tracking-[0.3em] text-juve-gold/50">Scroll</span>
+    </motion.div>
   </section>
 );
 
@@ -319,28 +340,75 @@ const FansSection = () => {
   );
 };
 
+const DelPieroSection = () => (
+  <section id="delpiero" className="py-24 relative overflow-hidden bg-black">
+    <div className="absolute top-0 right-0 w-1/2 h-full opacity-5 pointer-events-none">
+      <h2 className="text-[25rem] font-display font-bold text-white leading-none rotate-90 origin-top-right">10</h2>
+    </div>
+    <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <SectionHeader title="Alessandro Del Piero" subtitle="Il Capitano Eterno" />
+        <p className="text-xl text-white/80 mb-8 font-light leading-relaxed italic">
+          "La maglia della Juve è qualcosa di speciale, che ti entra dentro e non ti lascia più."
+        </p>
+        <div className="space-y-6 text-white/60 leading-relaxed">
+          <p>
+            705 presenze, 290 gol, 19 stagioni. Numeri che raccontano solo in parte l'impatto di Alessandro Del Piero sulla storia della Juventus. Arrivato da Padova come un giovane talento, è diventato il simbolo assoluto della juventinità.
+          </p>
+          <p>
+            Dalla vittoria della Champions League nel 1996 ai record di gol e presenze, passando per la fedeltà dimostrata nel momento più difficile della storia del club. Pinturicchio ha dipinto calcio per quasi vent'anni, regalando emozioni indelebili a generazioni di tifosi.
+          </p>
+        </div>
+        <div className="grid grid-cols-3 gap-8 mt-12">
+          <div>
+            <div className="text-3xl font-display font-bold text-juve-gold">705</div>
+            <div className="text-[10px] uppercase tracking-widest text-white/40">Presenze</div>
+          </div>
+          <div>
+            <div className="text-3xl font-display font-bold text-juve-gold">290</div>
+            <div className="text-[10px] uppercase tracking-widest text-white/40">Gol</div>
+          </div>
+          <div>
+            <div className="text-3xl font-display font-bold text-juve-gold">16</div>
+            <div className="text-[10px] uppercase tracking-widest text-white/40">Trofei</div>
+          </div>
+        </div>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+        className="relative aspect-square rounded-2xl overflow-hidden border border-white/10 bg-white/5 flex items-center justify-center"
+      >
+        <div className="text-[15rem] font-display font-bold text-white/5">10</div>
+        <div className="absolute inset-0 bg-gradient-to-t from-juve-black via-transparent to-transparent"></div>
+      </motion.div>
+    </div>
+  </section>
+);
+
 const SquadSection = () => (
   <section id="squad" className="py-24 px-6 max-w-7xl mx-auto">
     <SectionHeader title="I Protagonisti" subtitle="La Rosa 2025/26" />
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {SQUAD.map((player, idx) => (
-        <motion.div 
+        <motion.div
           key={player.id}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: idx * 0.1 }}
           viewport={{ once: true }}
-          className="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-white/5"
+          className="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-white/5 border border-white/10"
         >
-          <img 
-            src={player.image} 
-            alt={player.name}
-            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
           <div className="absolute bottom-0 left-0 p-8 w-full">
-            <span className="text-5xl font-display font-bold text-white/20 absolute top-4 right-8">{player.number}</span>
+            <span className="text-6xl font-display font-bold text-white/5 absolute top-4 right-8">{player.number}</span>
             <p className="text-juve-gold text-xs font-mono uppercase tracking-widest mb-1">{player.position}</p>
             <h3 className="text-2xl font-bold tracking-tight">{player.name}</h3>
           </div>
@@ -526,6 +594,7 @@ export default function App() {
       <Hero />
       <HistorySection />
       <Number10Section />
+      <DelPieroSection />
       <FansSection />
       <SquadSection />
       <MatchSection />
