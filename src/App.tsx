@@ -581,8 +581,11 @@ const Footer = () => (
         </div>
       </div>
     </div>
-    <div className="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-white/5 text-[10px] text-white/20 uppercase tracking-widest flex justify-between">
-      <span>© 2026 Juventus Fan Portal</span>
+    <div className="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-white/5 text-[10px] text-white/20 uppercase tracking-widest flex justify-between items-center">
+      <div className="flex gap-8">
+        <span>© 2026 Juventus Fan Portal</span>
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Source Code</a>
+      </div>
       <span>Made with passion for the Bianconeri</span>
     </div>
   </footer>
