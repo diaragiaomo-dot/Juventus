@@ -133,7 +133,7 @@ const Hero = () => (
   <section className="relative h-screen flex items-center justify-center overflow-hidden pt-20">
     <div className="absolute inset-0 z-0">
       <img 
-        src="https://picsum.photos/seed/juve-stadium-2026/1920/1080?grayscale" 
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7t-xLnWgbcLCO3vsPFbigrInOAxuIru_lsw&s" 
         className="w-full h-full object-cover opacity-50 scale-105 animate-pulse-slow"
         alt="Allianz Stadium"
         referrerPolicy="no-referrer"
